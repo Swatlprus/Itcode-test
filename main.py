@@ -1,9 +1,18 @@
-print('Hello ItCode')
+import telebot
+from settings import TOKEN
 
-x = int(input('Введите первое число: '))
-y = int(input('Введите второе число: '))
-print(f'Разница двух чисел равна: {x-y}')
+bot = telebot.TeleBot(TOKEN)
 
-a = int(input('Введите первое число: '))
-b = int(input('Введите второе число: '))
-print(f'Сумма чисел равна: {a+b}')
+@bot.message_handler(commands=['start'])
+def start_command(message):
+    bot.send_message(message.chat.id, 'Добро пожаловать в бот Рината Гильмиярова. Я демонстрационный бот. \n' +
+                     'Отправь команду /hello чтобы получить привественное сообщение'
+                     )
+
+@bot.message_handler(commands=['hello'])
+def get_text_messages(message):
+    username = message.from_user.username
+    msg = f'Приветсвую тебя в данном Телеграм боте, {username}'
+    bot.send_message(message.chat.id, msg)
+
+bot.polling()
