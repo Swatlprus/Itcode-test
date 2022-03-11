@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="{% static '/core/css/style.css' %}" rel="stylesheet">
-    <title>{{ title }} - Привет ITCode</title>
+    <title>Привет ITCode</title>
   </head>
   <body>
   <div class="container">
@@ -54,8 +54,46 @@
   </div>
 </nav>
       </header>
+
+    <form class="row g-3">
+
+  <div class="col-auto">
+    <input type="text" class="form-control" placeholder="Введите название" name="name" value="{{ request.GET.name }}">
+  </div>
+       <div class="col-auto">
+  <button type="submit" class="btn btn-primary">Найти</button>
+         </div>
+</form>
+
      <h1>Привет ребятам из стажировки ITCode!</h1>
-    <h4>Это {{ info }} сайта</h4>
+  <div class="alert alert-success" role="alert">
+    Ниже представление рейтинг IT-компании в России на 2022 год
+</div>
+
+      <table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Компания</th>
+      <th scope="col">Город</th>
+      <th scope="col">Основатель</th>
+      <th scope="col">Кол-во сотрудников</th>
+      <th scope="col">Рейтинг</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for org in object_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url 'core:founder' org.pk %}">{{ org.name }}</a></td>
+      <td>{{ org.city }}</td>
+      <td>{{ org.founder }}</td>
+      <td>{{ org.company_profile.staff_count }}</td>
+      <td>{{ org.rate }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

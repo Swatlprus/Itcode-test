@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 
+# Основатель компании
 class Founder(models.Model):
     name = models.CharField('Основатель', max_length=128)
 
@@ -12,6 +13,7 @@ class Founder(models.Model):
         return self.name
 
 
+# Рейтинг компании
 class Company(models.Model):
     founder = models.ForeignKey('core.Founder', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Основатель')
     name = models.CharField('Название', max_length=128)
@@ -27,7 +29,7 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
-
+# Дата основания компании
 class DateFound(models.Model):
     date = models.DateField()
     company = models.ManyToManyField('core.Company')
@@ -40,6 +42,7 @@ class DateFound(models.Model):
         return f'{self.date}'
 
 
+# Количество сотрудников
 class Staff(models.Model):
     count = models.IntegerField('Кол-во сотрудников', blank=True, null=True)
 
