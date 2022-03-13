@@ -54,11 +54,11 @@
   </div>
 </nav>
       </header>
-     <h2>Краткая информация о компании</h2>
-    <h4>Основатель компании: {{ founder }}
-</h4>
+     <h4>Краткая информация о компании</h4>
 
-    {{ staff }}
+    <p>Основатель компании: {{ company.founder }}</p>
+    <p>Биография: {{ company.description }}</p>
+    Дата создания: {{ company.date }}
 
     <!-- Optional JavaScript; choose one of the two! -->
 

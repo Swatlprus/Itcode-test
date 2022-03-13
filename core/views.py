@@ -41,11 +41,5 @@ class Company(ListView):
 
 
 # Выводит информацию об основателе компании
-class Founder(DetailView):
-    model = core.models.Founder
-
-    #def get_context_data(self, **kwargs):
-        #context = super().get_context_data()
-        # context['date'] = core.models.DateFound
-        #context['staff'] = core.models.Company.staff_count(pk=self.kwargs['pk'])
-        #return context
+class CompanyDetail(DetailView):
+    model = core.models.Company

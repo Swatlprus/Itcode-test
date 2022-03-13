@@ -85,7 +85,7 @@
   {% for org in object_list %}
     <tr>
       <th scope="row">{{ forloop.counter }}</th>
-      <td><a href="{% url 'core:founder' org.pk %}">{{ org.name }}</a></td>
+      <td><a href="{% url 'core:company_detail' org.pk %}">{{ org.name }}</a></td>
       <td>{{ org.city }}</td>
       <td>{{ org.founder }}</td>
       <td>{{ org.company_profile.staff_count }}</td>
