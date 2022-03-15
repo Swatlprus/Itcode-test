@@ -1,22 +1,10 @@
 from django.db import models
 from datetime import date
 
-# Основатель компании
-class Founder(models.Model):
-    name = models.CharField('Основатель', max_length=128)
-    bio = models.CharField('Краткая биография', max_length=512, null=True, blank=True)
-
-    class Meta:
-        verbose_name = 'Основатель'
-        verbose_name_plural = 'Основатели'
-
-    def __str__(self):
-        return self.name
-
 
 # Рейтинг компании
 class Company(models.Model):
-    founder = models.ForeignKey('core.Founder', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Основатель')
+    founder = models.CharField('Основатель', max_length=128, blank=True, null=True)
     name = models.CharField('Название', max_length=128)
     city = models.CharField('Город', max_length=128)
     date = models.DateField(blank=True, null=True)

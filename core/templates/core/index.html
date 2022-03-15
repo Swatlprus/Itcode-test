@@ -9,10 +9,10 @@
     <!-- Bootstrap CSS -->
     <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="{% static '/core/css/style.css' %}" rel="stylesheet">
-    <title>{{ title }} - Привет ITCode</title>
+    <title>{{ title }} - Проект рейтинга IT-компаний</title>
   </head>
   <body>
-  <div class="container">
+    <div class="container">
   <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -46,16 +46,22 @@
           <a class="nav-link disabled">Автор Ринат Гильмияров</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Введите запрос" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
-      </form>
     </div>
   </div>
 </nav>
       </header>
-     <h1>Привет ребятам из стажировки ITCode!</h1>
-    <h4>Это {{ info }} сайта</h4>
+
+      {% block title %}
+        {% if title %}
+          <h3>{{ title }}</h3>
+        {% endif %}
+      {% endblock %}
+
+      {% block content %}
+
+
+      {% endblock %}
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 

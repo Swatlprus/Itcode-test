@@ -4,8 +4,8 @@ import core.models
 
 
 # Генерация title на страницах
-class TitleMixin():
-    title = None
+class TitleMixin:
+    title: str = None
 
     def get_title(self):
         return self.title
@@ -31,7 +31,9 @@ class IndexView(TitleMixin, TemplateView):
 
 
 # Выводит список компании, так же есть фильтр по названию компании
-class Company(ListView):
+class Company(TitleMixin,  ListView):
+    title = 'Рейтинг компаний'
+
     def get_queryset(self):
         name = self.request.GET.get('name')
         queryset = core.models.Company.objects.all()
@@ -39,7 +41,9 @@ class Company(ListView):
             queryset = queryset.filter(name__contains=name)
         return queryset
 
-
-# Выводит информацию об основателе компании
-class CompanyDetail(DetailView):
+# Выводит информацию о конкретной компании
+class CompanyDetail(TitleMixin, DetailView):
     model = core.models.Company
+
+    def get_title(self):
+        return str(self.get_object())
