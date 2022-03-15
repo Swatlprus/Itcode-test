@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 import core.models
+import core.forms
+import core.filters
 
 
 # Генерация title на страницах
@@ -34,12 +36,21 @@ class IndexView(TitleMixin, TemplateView):
 class Company(TitleMixin,  ListView):
     title = 'Рейтинг компаний'
 
+    def get_filters(self):
+        return core.filters.CompanyFilter(self.request.GET)
+
     def get_queryset(self):
         name = self.request.GET.get('name')
         queryset = core.models.Company.objects.all()
         if name:
             queryset = queryset.filter(name__contains=name)
         return queryset
+        #return self.get_filters().gs
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['form'] = core.forms.CompanySearch(self.request.GET or None)
+        return context
 
 # Выводит информацию о конкретной компании
 class CompanyDetail(TitleMixin, DetailView):
