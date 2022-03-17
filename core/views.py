@@ -41,9 +41,19 @@ class Company(TitleMixin,  ListView):
 
     def get_queryset(self):
         name = self.request.GET.get('name')
+        # type = self.request.GET.get('type')
         queryset = core.models.Company.objects.all()
+
         if name:
             queryset = queryset.filter(name__contains=name)
+
+        # if name and type:
+        #     queryset = queryset.filter(name__contains=name, type__contains=type)
+        # elif name:
+        #     queryset = queryset.filter(name__contains=name)
+        # elif type:
+        #     queryset = queryset.filter(type=TypeCompany.object.get(type=type))
+
         return queryset
         #return self.get_filters().gs
 
