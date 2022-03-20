@@ -6,6 +6,9 @@
 
     <p>Основатель компании: {{ company.founder }}</p>
     <p>О компании: {{ company.description }}</p>
-    Дата создания: {{ company.date|date:"d.m.Y" }}
+    <p>Дата создания: {{ company.date|date:"d.m.Y" }}</p>
+
+<a href="{% url 'core:company_update' object.pk %}">Изменить</a>
+<a href="{% url 'core:company_delete' object.pk %}">Удалить</a>
 
 {% endblock %}

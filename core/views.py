@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.urls import reverse
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView
 import core.models
 import core.forms
 import core.filters
@@ -40,26 +41,19 @@ class Company(TitleMixin,  ListView):
         return core.filters.CompanyFilter(self.request.GET)
 
     def get_queryset(self):
-        name = self.request.GET.get('name')
-        # type = self.request.GET.get('type')
-        queryset = core.models.Company.objects.all()
 
-        if name:
-            queryset = queryset.filter(name__contains=name)
-
-        # if name and type:
-        #     queryset = queryset.filter(name__contains=name, type__contains=type)
-        # elif name:
+        # name = self.request.GET.get('name')
+        # queryset = core.models.Company.objects.all()
+        # if name:
         #     queryset = queryset.filter(name__contains=name)
-        # elif type:
-        #     queryset = queryset.filter(type=TypeCompany.object.get(type=type))
+        # return queryset
 
-        return queryset
-        #return self.get_filters().gs
+        return self.get_filters().qs
 
     def get_context_data(self):
         context = super().get_context_data()
-        context['form'] = core.forms.CompanySearch(self.request.GET or None)
+        #context['form'] = core.forms.CompanySearch(self.request.GET or None)
+        context['filters'] = self.get_filters()
         return context
 
 # Выводит информацию о конкретной компании
@@ -68,3 +62,30 @@ class CompanyDetail(TitleMixin, DetailView):
 
     def get_title(self):
         return str(self.get_object())
+
+class CompanyUpdate(TitleMixin, UpdateView):
+    model = core.models.Company
+    form_class = core.forms.CompanyEdit
+
+    def get_title(self):
+        return f'Изменение данных компании "{str(self.get_object())}"'
+
+    def get_success_url(self):
+        return reverse('core:company_list')
+
+class CompanyCreate(TitleMixin, CreateView):
+    model = core.models.Company
+    form_class = core.forms.CompanyEdit
+    title = 'Добавление компании'
+
+    def get_succes_url(self):
+        return reverse('core:company_list')
+
+class CompanyDelete(TitleMixin, DeleteView):
+    model = core.models.Company
+
+    def get_title(self):
+        return f'Удаление книги {str(self.get_object())}'
+
+    def get_succes_url(self):
+        return reverse('core:company_list')

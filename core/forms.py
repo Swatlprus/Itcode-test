@@ -4,7 +4,7 @@ import core.models
 class CompanySearch(forms.Form):
     name = forms.CharField(label='Название', required=False)
     #city = forms.ModelChoiceField(queryset=core.models.Company.objects.all(), to_field_name='city', empty_label=None, required=False)
-    type = forms.ModelChoiceField(label='Тип компании', queryset=core.models.TypeCompany.objects.all(), to_field_name='type', empty_label=None, required=False)
+    #type = forms.ModelChoiceField(label='Тип компании', queryset=core.models.TypeCompany.objects.all(), to_field_name='type', empty_label=None, required=False)
     min_rating = forms.IntegerField(label='Рейтинг компании', required=False, help_text='Минимальный рейтинг компании')
 
     def clean_min_rating(self):
