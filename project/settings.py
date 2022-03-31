@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """
 Django settings for project project.
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'django_filters',
     'core.apps.CoreConfig',
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [

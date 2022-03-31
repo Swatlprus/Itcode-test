@@ -29,18 +29,10 @@
           <a class="nav-link" href="{% url 'core:company_list' %}">Рейтинг компаний</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/">Админ-панель</a>
+          <a class="nav-link" href="{% url 'blog:post_list' %}">Блог</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Разное
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="#">Стажировка</a></li>
-            <li><a class="dropdown-item" href="#">Вакансии</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Обмен сотрудниками</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/">Админ-панель</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled">Автор Ринат Гильмияров</a>
@@ -57,8 +49,14 @@
         {% endif %}
       {% endblock %}
 
+
+
+
       {% block content %}
 
+      <div class="alert alert-success" role="alert">
+  A simple success alert—check it out!
+</div>
 
       {% endblock %}
 

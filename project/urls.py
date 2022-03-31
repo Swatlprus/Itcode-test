@@ -22,6 +22,7 @@ from project import settings
 
 urlpatterns = [
     path('', include('core.urls', namespace='core')),
+    path('blog/', include('blog.urls', namespace='blog')),
     path('admin/', admin.site.urls),
 ]
 
